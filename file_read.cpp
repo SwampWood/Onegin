@@ -1,27 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 #include <TXLib.h>
 #include "file_read.h"
+#include "text_struct.h"
 
-const char* FILE_NAME = "verse1.txt";
+void ReadTextFromFile(struct Text* full_text, char* name_of_file) {
+    full_text->name_of_file = name_of_file;
 
-void GetWholeText(char text[][LENGHT_OF_STRING], size_t count_of_rows) {
-    FILE* text_file = fopen(FILE_NAME, "r");
-    size_t current_line = 0;
+    struct stat *buf;
 
-    while (current_line < count_of_rows) {
-        fgets(text[current_line], LENGHT_OF_STRING, text_file);
-        ++current_line;
-    }
-}
+    buf = (struct stat*) calloc(1, sizeof(struct stat));
+    stat(name_of_file, buf);
+    full_text->buffer_lenght = buf->st_size;
+    printf("%d", full_text->buffer_lenght);
 
-size_t GetSizeText(void) {
-    size_t count_lines = 0;
-    char buffer[LENGHT_OF_STRING] = {};
-    FILE* text_file = fopen(FILE_NAME, "r");
-
-    while (fgets(buffer, LENGHT_OF_STRING, text_file) != NULL) {
-        ++count_lines;
-    }
-    return count_lines;
+    full_text->buffer = (char*) calloc(full_text->buffer_lenght, 1);
 }
