@@ -32,9 +32,12 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="file_read.cpp" />
+		<Unit filename="file_read.h" />
 		<Unit filename="get_text.cpp" />
 		<Unit filename="get_text.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="text_struct.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

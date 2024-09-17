@@ -4,8 +4,6 @@
 struct Text {
     char** pointers_to_lines;
     size_t text_lenght;
-    char* buffer;
-    size_t buffer_lenght;
     char* name_of_file;
 };
 
